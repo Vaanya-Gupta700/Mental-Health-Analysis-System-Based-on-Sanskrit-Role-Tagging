@@ -31,6 +31,7 @@ def analyze_structural_sentiment(sentence_text, top_domain=None):
         top_domain = detect_domain(sentence_text)
     
     print(f"Analyzing using weights for: {top_domain}")
+ # tokenization(parsing)
     doc = nlp(sentence_text)
     results = []
     
@@ -80,6 +81,7 @@ def analyze_structural_sentiment(sentence_text, top_domain=None):
     neg_words = [token.text.lower() for token in anchors["NEGATIVE"]]
 
     # STEP A: Assign Roles to EVERY token first
+    # Paninian Mapping
     token_roles = {}
     for token in doc:
         role = "Other"
@@ -95,6 +97,7 @@ def analyze_structural_sentiment(sentence_text, top_domain=None):
         content_pos = ["NOUN", "VERB", "ADJ", "ADV", "PROPN"]
         
         # 1. Polarity Logic (Stays the same)
+        # Dictionary-meaning similarity-backup sentiment
         if token.is_stop or token.is_punct or token.pos_ not in content_pos:
             polarity = 0.0
         else:
@@ -138,7 +141,8 @@ def analyze_structural_sentiment(sentence_text, top_domain=None):
         # FINAL CALCULATION
         final_score = polarity * context_mult * role_weight
 
-        results.append({
+         # Store result   
+     results.append({
             "word": token.text,
             "role": role,
             "polarity": polarity,
