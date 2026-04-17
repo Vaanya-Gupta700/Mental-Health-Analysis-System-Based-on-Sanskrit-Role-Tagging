@@ -30,6 +30,7 @@ def run_main():
                 raw_entry = row['Text_Column']
                 sentences = split_into_sentences(raw_entry)
 
+                # Processes each sentence separately
                 for i, sentence in enumerate(sentences):
                     clean_sent = clean_text(sentence)
                     
@@ -59,6 +60,7 @@ def run_main():
         
                      print("_" * 100)
 
+            # dominance score(btw 0 and 1)
             paragraph_dominance = 1 / (1 + math.exp(-daily_raw_score))
 
             all_plot_data.append({
