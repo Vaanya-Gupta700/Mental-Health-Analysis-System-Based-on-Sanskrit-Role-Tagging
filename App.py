@@ -123,7 +123,7 @@ if uploaded_file:
             st.write(f"The following transcripts from **mental_health_data.csv** were used to generate this Karaka Agency Report:")
             
             # Load the original data to show the text
-            df_raw = pd.read_csv("mental_health_data.csv")
+            df_raw = pd.read_csv("data/mental_health_data.csv")
             patient_text_data = df_raw[df_raw['Patient_ID'] == selected_patient][['Date', 'Text_Column']]
             
             # Display it as a clean table
