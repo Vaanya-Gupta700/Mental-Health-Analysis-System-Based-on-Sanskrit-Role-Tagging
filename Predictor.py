@@ -50,6 +50,7 @@ def calculate_weighted_prediction(csv_file):
             if confidence < 0.5:
                 risk_raw -= 1.5 
                 
+             # Sigmoid function(raw risk to probability score btw 0 and 1)   
             risk_probability = 1 / (1 + math.exp(-risk_raw))
             
             # Status based on confidence
