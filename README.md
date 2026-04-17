@@ -42,4 +42,24 @@ P_101,2026-04-02,I am taking control again.
 - Risk probability estimates
 - Structural sentiment tables
 
+
 ![Home Page](assets/home.png)
+
+
+![Daily Trends](assets/daily-trends.png)
+
+
+![Dominance Trends Plot](assets/dominance-trends-plot.png)
+
+
+![Structural Analysis](assets/structural-analysis.png)
+
+
+## Project Contributors
+Anshika  
+Prachi Aggarwal  
+Rashmi  
+Urmee Kali  
+Vaanya Gupta  
+
+
