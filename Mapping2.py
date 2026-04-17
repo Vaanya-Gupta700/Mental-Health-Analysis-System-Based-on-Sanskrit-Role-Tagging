@@ -142,7 +142,7 @@ def analyze_structural_sentiment(sentence_text, top_domain=None):
         final_score = polarity * context_mult * role_weight
 
          # Store result   
-     results.append({
+        results.append({
             "word": token.text,
             "role": role,
             "polarity": polarity,
