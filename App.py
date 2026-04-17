@@ -148,8 +148,7 @@ if uploaded_file:
             st.subheader(f"Detailed Structural Breakdown: {selected_patient}")
             target_data = predictions[predictions['Patient'] == selected_patient]
             st.dataframe(target_data, use_container_width=True)
-            
-            st.write("### 🕉️ Karaka Mapping Insights")
+        
             # Using columns to create a clean "Glossary" look
             g1, g2 = st.columns(2)
 
