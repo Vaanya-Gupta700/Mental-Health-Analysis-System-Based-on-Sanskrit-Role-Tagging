@@ -26,3 +26,13 @@ A Streamlit-based analytics project for monitoring longitudinal mental health tr
 4. Run the app:
    python -m streamlit run app.py
 5. After running the command, open the local URL shown in the terminal.
+
+## Input Dataset Format
+Required CSV columns:
+
+Patient_ID, Date, Text_Column
+
+Example:
+
+P_101,2026-04-01,I feel overwhelmed today.
+P_101,2026-04-02,I am taking control again.
