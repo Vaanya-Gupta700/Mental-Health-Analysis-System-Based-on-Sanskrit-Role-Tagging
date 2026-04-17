@@ -34,3 +34,12 @@ Patient_ID, Date, Text_Column
 Example:  
 P_101,2026-04-01,I feel overwhelmed today.  
 P_101,2026-04-02,I am taking control again.
+
+## Output
+- Patient dashboard reports
+- Trend visualizations
+- Dominance score summaries
+- Risk probability estimates
+- Structural sentiment tables
+
+![Home Page](assets/home.png)
