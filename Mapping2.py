@@ -9,18 +9,18 @@ nlp = spacy.load("en_core_web_md")
 # weight_scale essentially decides how much the "vibe" or "emotional charge" of the words should weigh
 domain_anchors = {
     "Private Diary Entry": {
-       "POSITIVE": nlp("positive try motivated calmer stable hopeful focus aware present clear confident manage improve accomplish control handle interact comfortably enjoy shared connected"),
-        "NEGATIVE": nlp("low circumstances sad dragged drained exhausted heavy overwhelming overthinking intense crowded unmanageable stuck giving-up avoiding exhausting isolated silent"),
+       "POSITIVE": nlp("positive try change motivated calmer stable hopeful focus aware present clear confident manage improve accomplish control handle interact comfortably enjoy shared connected"),
+        "NEGATIVE": nlp("low impossible panic defeat stuck fear circumstances sad dragged drained exhausted heavy overwhelming overthinking intense crowded unmanageable stuck giving-up avoiding exhausting isolated silent"),
         "weight_scale": 1.5 
     },
     "Peer Support/Therapy": {
-        "POSITIVE": nlp("shared understood connected listened helpful"),
-        "NEGATIVE": nlp("isolated ignored silent misunderstood"),
+        "POSITIVE": nlp("shared supporting helping friend each other understood growning connected listened helpful"),
+        "NEGATIVE": nlp("isolated drown alone struggle pain lost ignored silent misunderstood"),
         "weight_scale": 1.0
     },
     "Clinical Mental Health Analysis": {
-        "POSITIVE": nlp("stable improved functional consistent"),
-        "NEGATIVE": nlp("relapse symptomatic episodic chronic"),
+        "POSITIVE": nlp("stable improved strong functional consistent walk recovering better "),
+        "NEGATIVE": nlp("relapse darkness drown overwhelming controlling symptomatic negative episodic chronic suffocation insomnia unable "),
         "weight_scale": 0.5 
     }
 }
