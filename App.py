@@ -13,7 +13,7 @@ st.sidebar.header("Step 1: Upload Data")
 uploaded_file = st.sidebar.file_uploader("Upload mental_health_data.csv", type=["csv"])
 
 if uploaded_file:
-    with open("mental_health_data.csv", "wb") as f:
+    with open("data/mental_health_data.csv", "wb") as f:
         f.write(uploaded_file.getbuffer())
     
     # --- RUN GLOBAL ANALYSIS ---
