@@ -16,3 +16,13 @@ A Streamlit-based analytics project for monitoring longitudinal mental health tr
 - Hugging Face Transformers
 - scikit-learn
 - Pandas, NumPy, Seaborn, Matplotlib
+
+## Installation
+1. Clone the repository.
+2. Install dependencies:
+   python -m pip install -r requirements.txt
+3. Install spaCy model:
+   python -m spacy download en_core_web_md
+4. Run the app:
+   python -m streamlit run app.py
+5. After running the command, open the local URL shown in the terminal.
