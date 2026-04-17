@@ -11,8 +11,8 @@ A Streamlit-based analytics project for monitoring longitudinal mental health tr
 
 ## Technology Stack
 - **Programming Language:** Python  
-- **Frontend / UI:** Streamlit  
-- **Natural Language Processing:** spaCy, Hugging Face Transformers  
+- **Frontend/UI:** Streamlit  
+- **Natural Language Processing:** spaCy, Transformers  
 - **Machine Learning:** scikit-learn  
 - **Data Handling:** Pandas, NumPy  
 - **Data Visualization:** Matplotlib, Seaborn  
@@ -43,6 +43,7 @@ P_101,2026-04-02,I am taking control again.
 - Risk probability estimates
 - Structural sentiment tables
 
+## Demo
 
 ![Home Page](assets/home.png)
 
