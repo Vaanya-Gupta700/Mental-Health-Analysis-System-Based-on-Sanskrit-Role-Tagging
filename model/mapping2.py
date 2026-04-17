@@ -1,6 +1,6 @@
 import spacy
 from textblob import TextBlob
-from DomainDetection import detect_domain
+from model.domaindetection import detect_domain
 
 # Load the brain
 nlp = spacy.load("en_core_web_md")

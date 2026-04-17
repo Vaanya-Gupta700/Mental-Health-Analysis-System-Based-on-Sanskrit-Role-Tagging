@@ -1,3 +1,4 @@
+from config.config import FORECAST_DAYS
 import pandas as pd
 import numpy as np
 from sklearn.linear_model import LinearRegression
@@ -35,7 +36,7 @@ def calculate_weighted_prediction(csv_file):
             
             slope = model.coef_[0]
             last_day = days[-1][0]
-            raw_forecast = model.predict([[last_day + 7]])[0]
+            raw_forecast = model.predict([[last_day + FORECAST_DAYS]])[0]
             
             # 3. THE FIX: Confidence-Weighted Smoothing
             # If confidence is low, we pull the forecast closer to the current score

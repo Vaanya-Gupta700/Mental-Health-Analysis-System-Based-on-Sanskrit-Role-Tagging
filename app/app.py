@@ -1,10 +1,16 @@
+import sys
+import os
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+from main import run_main
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-from Main import run_main 
-from Predictor import calculate_weighted_prediction
-from DomainDetection import detect_domain
+
+from model.predictor import calculate_weighted_prediction
+from model.domaindetection import detect_domain
 
 st.set_page_config(page_title="Sanskrit-AI Dashboard", layout="wide")
 

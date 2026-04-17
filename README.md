@@ -6,16 +6,17 @@ A Streamlit-based analytics project for monitoring longitudinal mental health tr
 - Karaka-based Structural Sentiment Analysis
 - Longitudinal Tracking of patient mental state
 - Patient-specific reports and charts
-- 7-Day Risk Prediction using Weighted Regression
+- 7-Day Predictive Trend Visualization
+- Confidence-weighted Risk Prediction using Exponential Regression
 - Interactive dashboard using Streamlit
 
 ## Technology Stack
 - **Programming Language:** Python  
 - **Frontend/UI:** Streamlit  
-- **Natural Language Processing:** spaCy, Transformers  
+- **Natural Language Processing:** spaCy, Hugging Face Transformers, TextBlob
 - **Machine Learning:** scikit-learn  
 - **Data Handling:** Pandas, NumPy  
-- **Data Visualization:** Matplotlib, Seaborn  
+- **Data Visualization:** Matplotlib, Seaborn, Plotly
 - **Deep Learning Backend:** PyTorch  
 
 ## Installation
@@ -38,10 +39,21 @@ P_101,2026-04-02,I am taking control again.
 
 ## Output
 - Patient dashboard reports
-- Trend visualizations
+- Historical + 7-day forecast trend graph
 - Dominance score summaries
 - Risk probability estimates
 - Structural sentiment tables
+
+## Predicitve Modeling Logic
+The system uses Exponentially Weighted Linear Regression to forecast a patient's mental state:
+
+- Recent data points are given higher importance
+- Forecast is adjusted using confidence-based smoothing
+- Outputs include:  
+Trend velocity  
+7-day forecast  
+Risk probability  
+Clinical status classification
 
 ## Demo
 

@@ -1,12 +1,17 @@
-from Preprocessing import clean_text, split_into_sentences
-from DomainDetection import detect_domain
-from Mapping2 import analyze_structural_sentiment
+import sys
+import os
+
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+from config.config import DATA_PATH, OUTPUT_PATH
+from utils.preprocessing import clean_text, split_into_sentences
+from model.domaindetection import detect_domain
+from model.mapping2 import analyze_structural_sentiment
 import pandas as pd
 import math
 
 def run_main():
     all_plot_data = []
-    df = pd.read_csv("data/mental_health_data.csv") 
+    df = pd.read_csv(DATA_PATH) 
 
     # --- LEVEL 1: PATIENT LOOP ---
     for patient_id, patient_data in df.groupby('Patient_ID'):
