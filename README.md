@@ -10,12 +10,13 @@ A Streamlit-based analytics project for monitoring longitudinal mental health tr
 - Interactive dashboard using Streamlit
 
 ## Technology Stack
-- Python
-- Streamlit
-- spaCy
-- Hugging Face Transformers
-- scikit-learn
-- Pandas, NumPy, Seaborn, Matplotlib
+- **Programming Language:** Python  
+- **Frontend / UI:** Streamlit  
+- **Natural Language Processing:** spaCy, Hugging Face Transformers  
+- **Machine Learning:** scikit-learn  
+- **Data Handling:** Pandas, NumPy  
+- **Data Visualization:** Matplotlib, Seaborn  
+- **Deep Learning Backend:** PyTorch  
 
 ## Installation
 1. Clone the repository.
