@@ -63,7 +63,7 @@ Clinical status classification
 ![Daily Trends](assets/daily-trends.png)
 
 
-![Dominance Trends Plot](assets/dominance-trends-plot.png)
+![Plot](assets/plot.png)
 
 
 ![Structural Analysis](assets/structural-analysis.png)
