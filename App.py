@@ -110,13 +110,42 @@ if uploaded_file:
                 for label in ax.get_xticklabels(): label.set_rotation(45)
             st.pyplot(fig.figure)
 
-        with tab2:
+       with tab2:
             st.subheader(f"Detailed Structural Breakdown: {selected_patient}")
             target_data = predictions[predictions['Patient'] == selected_patient]
             st.dataframe(target_data, use_container_width=True)
             
             st.write("### 🕉️ Karaka Mapping Insights")
-            st.info(f"Showing the latest linguistic agency markers for {selected_patient}. The scores reflect the integration of Tagging Multipliers and the Pāṇinian Role Formula.")
+            # Using columns to create a clean "Glossary" look
+            g1, g2 = st.columns(2)
+
+            with g1:
+              st.write("**📊 Dominance Score (Agency Index)**")
+              st.caption("""
+        The final normalized value (0 to 1). 
+        - **< 0.4 (Tamasic):** High passivity; patient is the *Karma* (Object) of external forces.
+        - **> 0.6 (Sattvic):** High agency; patient is the *Svatantra Karta* (Independent Doer).
+        """)
+
+              st.write("**🚀 Trend Velocity**")
+              st.caption("""
+        Calculates the rate of change in agency over time. A positive velocity indicates a 
+        linguistic shift toward self-empowerment and recovery.
+        """)
+
+            with g2:
+             st.write("**🏷️ Tagging Multipliers**")
+             st.caption("""
+        Derived from Pāṇinian Karaka roles. 
+        - **Karta (Subject):** Multiplier 1.5x (Boosts agency).
+        - **Karma (Object):** Multiplier 0.8x (Dampens agency if the self is the object).
+        """)
+
+             st.write("**🧠 Risk Probability**")
+        st.caption("""
+        The statistical likelihood that the current linguistic structure reflects a 
+        'Helplessness' state. Lower percentages correlate with higher recovery stability.
+        """)
 
         st.divider()
         with st.expander(f"📄 View Raw Source Data for {selected_patient}"):
