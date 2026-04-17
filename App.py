@@ -13,8 +13,8 @@ st.sidebar.header("Step 1: Upload Data")
 uploaded_file = st.sidebar.file_uploader("Upload mental_health_data.csv", type=["csv"])
 
 if uploaded_file:
-    with open("data/mental_health_data.csv", "wb") as f:
-        f.write(uploaded_file.getbuffer())
+    with open("mental_health_data.csv", "wb") as f:
+        f.write(uploaded_file.getbuffer())        
     
     # --- RUN GLOBAL ANALYSIS ---
     with st.spinner('Running Karaka Analysis...'):
@@ -83,34 +83,68 @@ if uploaded_file:
         with tab1:
             st.subheader("Current Patient Status")
             
-            # --- NEW FILTERED KPI LOGIC ---
-            # Filter the predictions dataframe to only show the selected patient
+            # KPI Display
             display_data = predictions[predictions['Patient'] == selected_patient]
-            
-            # Display KPI for ONLY the selected patient
-            cols = st.columns(1) # We only need one column now
-            for i, row in display_data.iterrows():
-                with cols[0]:
-                    st.metric(label=f"Patient {row['Patient']}", 
-                              value=f"{row['Current_Score']:.2f}", 
-                              delta=row['Trend_Velocity'])
-                    st.write(f"**Status:** {row['Clinical_Status']}")
-            # ------------------------------
+            st.metric(label="Current Agency Score", 
+                      value=f"{display_data['Current_Score'].values[0]:.2f}", 
+                      delta=f"{display_data['Trend_Velocity'].values[0]:.4f}")
+            st.write(f"**Clinical Status:** {display_data['Clinical_Status'].values[0]}")
 
             st.divider()
-            st.subheader(f"Longitudinal Dominance Trends: {selected_patient}")
+            st.subheader(f"7-Day Predictive Agency Trend: {selected_patient}")
             
-            # Filter the graph for the selected patient
-            plot_data = df_plot[df_plot['Patient_ID'] == selected_patient]
+            # --- PREDICTIVE GRAPH LOGIC (PLOTLY) ---
+            import plotly.graph_objects as go
+            import numpy as np
+            from datetime import timedelta
 
-            fig = sns.FacetGrid(plot_data, col="Patient_ID", col_wrap=2, height=4, aspect=1.5)
-            fig.map(sns.lineplot, "Date", "Dominance_Score", marker="o", color="teal")
-            fig.map(plt.axhline, y=0.5, color="red", linestyle="--", alpha=0.5)
-            for ax in fig.axes.flat:
-                for label in ax.get_xticklabels(): label.set_rotation(45)
-            st.pyplot(fig.figure)
+            # 1. Prepare Historical Data
+            plot_data = df_plot[df_plot['Patient_ID'] == selected_patient].sort_values('Date')
+            
+            # 2. Extract Prediction Values from our Predictor
+            # (Using the values already calculated in your calculate_weighted_prediction function)
+            current_score = display_data['Current_Score'].values[0]
+            forecast_score = display_data['7D_Forecast'].values[0]
+            last_date = plot_data['Date'].max()
+            future_date = last_date + timedelta(days=7)
 
-       with tab2:
+            # 3. Build the Plotly Figure
+            fig = go.Figure()
+
+            # TRACE 1: Historical Data (Solid Teal Line)
+            fig.add_trace(go.Scatter(
+                x=plot_data['Date'], 
+                y=plot_data['Dominance_Score'],
+                mode='lines+markers',
+                name='Historical Agency (Pratyakṣa)',
+                line=dict(color='teal', width=3)
+            ))
+
+            # TRACE 2: Predictive Forecast (Dashed Orange Line)
+            # We connect the last historical point to the future point
+            fig.add_trace(go.Scatter(
+                x=[last_date, future_date],
+                y=[current_score, forecast_score],
+                mode='lines',
+                name='7D Forecast (Anumāna)',
+                line=dict(color='orange', width=3, dash='dash')
+            ))
+
+            # Add Threshold Backgrounds (Tamas vs Sattva)
+            fig.add_hrect(y0=0, y1=0.4, fillcolor="red", opacity=0.1, line_width=0, annotation_text="Tamasic Zone")
+            fig.add_hrect(y0=0.6, y1=1.0, fillcolor="green", opacity=0.1, line_width=0, annotation_text="Sattvic Zone")
+
+            fig.update_layout(
+                yaxis_range=[0, 1],
+                hovermode="x unified",
+                legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
+                margin=dict(l=20, r=20, t=40, b=20)
+            )
+
+            st.plotly_chart(fig, use_container_width=True)
+            # ---------------------------------------
+
+        with tab2:
             st.subheader(f"Detailed Structural Breakdown: {selected_patient}")
             target_data = predictions[predictions['Patient'] == selected_patient]
             st.dataframe(target_data, use_container_width=True)
@@ -152,7 +186,7 @@ if uploaded_file:
             st.write(f"The following transcripts from **mental_health_data.csv** were used to generate this Karaka Agency Report:")
             
             # Load the original data to show the text
-            df_raw = pd.read_csv("data/mental_health_data.csv")
+            df_raw = pd.read_csv("mental_health_data.csv")
             patient_text_data = df_raw[df_raw['Patient_ID'] == selected_patient][['Date', 'Text_Column']]
             
             # Display it as a clean table
