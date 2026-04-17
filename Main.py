@@ -6,7 +6,7 @@ import math
 
 def run_main():
     all_plot_data = []
-    df = pd.read_csv("mental_health_data.csv") 
+    df = pd.read_csv("data/mental_health_data.csv") 
 
     # --- LEVEL 1: PATIENT LOOP ---
     for patient_id, patient_data in df.groupby('Patient_ID'):
