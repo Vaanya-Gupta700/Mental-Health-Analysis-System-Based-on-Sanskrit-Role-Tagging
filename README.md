@@ -20,7 +20,7 @@ A Streamlit-based analytics project for monitoring longitudinal mental health tr
 - **Deep Learning Backend:** PyTorch  
 
 ## Installation
-1. Clone the repository.
+1. Clone the repository.  
    git clone https://github.com/Vaanya-Gupta700/Mental-Health-Analysis-System-Based-on-Sanskrit-Role-Tagging.git  
    cd Mental-Health-Analysis-System-Based-on-Sanskrit-Role-Tagging
 2. Install dependencies:  
