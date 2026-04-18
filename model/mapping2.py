@@ -1,6 +1,6 @@
 import spacy
 from textblob import TextBlob
-from model.domaindetection import detect_domain
+from DomainDetection import detect_domain
 
 # Load the brain
 nlp = spacy.load("en_core_web_md")
@@ -31,7 +31,6 @@ def analyze_structural_sentiment(sentence_text, top_domain=None):
         top_domain = detect_domain(sentence_text)
     
     print(f"Analyzing using weights for: {top_domain}")
- # tokenization(parsing)
     doc = nlp(sentence_text)
     results = []
     
@@ -81,7 +80,6 @@ def analyze_structural_sentiment(sentence_text, top_domain=None):
     neg_words = [token.text.lower() for token in anchors["NEGATIVE"]]
 
     # STEP A: Assign Roles to EVERY token first
-    # Paninian Mapping
     token_roles = {}
     for token in doc:
         role = "Other"
@@ -97,7 +95,6 @@ def analyze_structural_sentiment(sentence_text, top_domain=None):
         content_pos = ["NOUN", "VERB", "ADJ", "ADV", "PROPN"]
         
         # 1. Polarity Logic (Stays the same)
-        # Dictionary-meaning similarity-backup sentiment
         if token.is_stop or token.is_punct or token.pos_ not in content_pos:
             polarity = 0.0
         else:
@@ -122,18 +119,18 @@ def analyze_structural_sentiment(sentence_text, top_domain=None):
         
         is_self = any(u in interlink_lower for u in ["i", "me", "my", "mine", "myself"])
         is_external = any(o in interlink_lower for o in ["he", "she", "they", "circumstances", "brain"])
-
-        W_MAP = {"Karta": 1.5, "Kriya": 0.5, "Karma": 0.8, "Viseshta": 0.7, "Other": 0.6}
         
         # Sva-Karta vs Para-Karta Logic
         if role == "Karta":
-            # Direct check for user as the doer
-            if token.text.lower() in ["i", "we"]:
-                role_weight = 1.5
-            else:
-                role_weight = 0.4 # Penalty for external Karta
+            role_weight = 1.5 if is_self else 0.7
+        elif role == "Karma":
+            role_weight = 1.2 if is_self else 0.8
+        elif role == "Viseshta":
+            role_weight = 1.0
+        elif role == "Kriya":
+            role_weight = 0.6
         else:
-            role_weight = W_MAP.get(role, 0.6)
+            role_weight = 0.5
 
         # Context Multiplier: Ownership (1.5) vs Displacement (0.5)
         context_mult = 1.5 if is_self else (0.5 if is_external else 0.8)
@@ -141,7 +138,6 @@ def analyze_structural_sentiment(sentence_text, top_domain=None):
         # FINAL CALCULATION
         final_score = polarity * context_mult * role_weight
 
-         # Store result   
         results.append({
             "word": token.text,
             "role": role,
