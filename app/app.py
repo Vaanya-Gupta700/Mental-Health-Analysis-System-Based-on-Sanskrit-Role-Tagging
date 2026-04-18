@@ -173,15 +173,9 @@ if uploaded_file:
         """)
 
             with g2:
-             st.write("**🏷️ Tagging Multipliers**")
-             st.caption("""
-        Derived from Pāṇinian Karaka roles. 
-        - **Karta (Subject):** Multiplier 1.5x (Boosts agency).
-        - **Karma (Object):** Multiplier 0.8x (Dampens agency if the self is the object).
-        """)
 
              st.write("**🧠 Risk Probability**")
-        st.caption("""
+             st.caption("""
         The statistical likelihood that the current linguistic structure reflects a 
         'Helplessness' state. Lower percentages correlate with higher recovery stability.
         """)
