@@ -28,7 +28,7 @@ A Streamlit-based analytics project for monitoring longitudinal mental health tr
 3. Install spaCy model:  
    python -m spacy download en_core_web_md
 4. Run the app:  
-   python -m streamlit run app.py
+   python -m streamlit run app/app.py
 5. After running the command, open the local URL shown in the terminal.
 
 ## Input Dataset Format
