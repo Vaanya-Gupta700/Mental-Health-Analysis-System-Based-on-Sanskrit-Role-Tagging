@@ -21,6 +21,8 @@ A Streamlit-based analytics project for monitoring longitudinal mental health tr
 
 ## Installation
 1. Clone the repository.
+   git clone https://github.com/Vaanya-Gupta700/Mental-Health-Analysis-System-Based-on-Sanskrit-Role-Tagging.git  
+   cd Mental-Health-Analysis-System-Based-on-Sanskrit-Role-Tagging
 2. Install dependencies:  
    python -m pip install -r requirements.txt
 3. Install spaCy model:  
@@ -34,8 +36,8 @@ Required CSV columns:
 Patient_ID, Date, Text_Column
 
 Example:  
-P_101,2026-04-01,I feel overwhelmed today.  
-P_101,2026-04-02,I am taking control again.
+P_101,2026-04-01,"I feel overwhelmed today."  
+P_101,2026-04-02,"I am taking control again."
 
 ## Output
 - Patient dashboard reports
